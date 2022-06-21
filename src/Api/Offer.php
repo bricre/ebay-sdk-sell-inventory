@@ -17,6 +17,7 @@ use Ebay\Sell\Inventory\Model\PublishByInventoryItemGroupRequest;
 use Ebay\Sell\Inventory\Model\PublishResponse;
 use Ebay\Sell\Inventory\Model\WithdrawByInventoryItemGroupRequest;
 use Ebay\Sell\Inventory\Model\WithdrawResponse;
+use OpenAPI\Runtime\UnexpectedResponse;
 
 class Offer extends AbstractAPI
 {
@@ -57,9 +58,9 @@ class Offer extends AbstractAPI
      *
      * @param BulkEbayOfferDetailsWithKeys $Model Details of the offer for the channel
      *
-     * @return BulkOfferResponse
+     * @return BulkOfferResponse|UnexpectedResponse
      */
-    public function bulkCreate(BulkEbayOfferDetailsWithKeys $Model): BulkOfferResponse
+    public function bulkCreate(BulkEbayOfferDetailsWithKeys $Model)
     {
         return $this->request(
         'bulkCreateOffer',
@@ -93,9 +94,9 @@ class Offer extends AbstractAPI
      * @param BulkOffer $Model the base request of the
      *                         <strong>bulkPublishOffer</strong> method
      *
-     * @return BulkPublishResponse
+     * @return BulkPublishResponse|UnexpectedResponse
      */
-    public function bulkPublish(BulkOffer $Model): BulkPublishResponse
+    public function bulkPublish(BulkOffer $Model)
     {
         return $this->request(
         'bulkPublishOffer',
@@ -145,9 +146,9 @@ class Offer extends AbstractAPI
      *                       offers associated with this product are returned in the response.<br/><br/>
      *                       <strong>Max length</strong>: 50.
      *
-     * @return Offers
+     * @return Offers|UnexpectedResponse
      */
-    public function gets(array $queries = []): Offers
+    public function gets(array $queries = [])
     {
         return $this->request(
         'getOffers',
@@ -200,9 +201,9 @@ class Offer extends AbstractAPI
      *                                          'Content-Language'	string	This request header sets the natural language that
      *                                          will be provided in the field values of the request payload
      *
-     * @return OfferResponse
+     * @return OfferResponse|UnexpectedResponse
      */
-    public function create(EbayOfferDetailsWithKeys $Model, array $headers = []): OfferResponse
+    public function create(EbayOfferDetailsWithKeys $Model, array $headers = [])
     {
         return $this->request(
         'createOffer',
@@ -224,9 +225,9 @@ class Offer extends AbstractAPI
      * @param string $offerId the unique identifier of the offer that is to be
      *                        retrieved
      *
-     * @return EbayOfferDetailsWithAll
+     * @return EbayOfferDetailsWithAll|UnexpectedResponse
      */
-    public function get(string $offerId): EbayOfferDetailsWithAll
+    public function get(string $offerId)
     {
         return $this->request(
         'getOffer',
@@ -280,9 +281,9 @@ class Offer extends AbstractAPI
      *                                        'Content-Language'	string	This request header sets the natural language that
      *                                        will be provided in the field values of the request payload
      *
-     * @return OfferResponse
+     * @return OfferResponse|UnexpectedResponse
      */
-    public function update(string $offerId, EbayOfferDetailsWithId $Model, array $headers = []): OfferResponse
+    public function update(string $offerId, EbayOfferDetailsWithId $Model, array $headers = [])
     {
         return $this->request(
         'updateOffer',
@@ -312,9 +313,9 @@ class Offer extends AbstractAPI
      *                        identifier of the offer (<strong>offerId</strong>) is passed in at the end of
      *                        the call URI.
      *
-     * @return mixed
+     * @return UnexpectedResponse
      */
-    public function delete(string $offerId): mixed
+    public function delete(string $offerId): UnexpectedResponse
     {
         return $this->request(
         'deleteOffer',
@@ -340,9 +341,9 @@ class Offer extends AbstractAPI
      *
      * @param OfferKeysWithId $Model List of offers that needs fee information
      *
-     * @return FeesSummaryResponse
+     * @return FeesSummaryResponse|UnexpectedResponse
      */
-    public function getListingFees(OfferKeysWithId $Model): FeesSummaryResponse
+    public function getListingFees(OfferKeysWithId $Model)
     {
         return $this->request(
         'getListingFees',
@@ -371,9 +372,9 @@ class Offer extends AbstractAPI
      * @param string $offerId the unique identifier of the offer that is to be
      *                        published
      *
-     * @return PublishResponse
+     * @return PublishResponse|UnexpectedResponse
      */
-    public function publish(string $offerId): PublishResponse
+    public function publish(string $offerId)
     {
         return $this->request(
         'publishOffer',
@@ -413,9 +414,9 @@ class Offer extends AbstractAPI
      *                                                  item group to publish and the eBay marketplace where the listing will be
      *                                                  published is needed in the request payload
      *
-     * @return PublishResponse
+     * @return PublishResponse|UnexpectedResponse
      */
-    public function publishByInventoryItemGroup(PublishByInventoryItemGroupRequest $Model): PublishResponse
+    public function publishByInventoryItemGroup(PublishByInventoryItemGroupRequest $Model)
     {
         return $this->request(
         'publishOfferByInventoryItemGroup',
@@ -444,9 +445,9 @@ class Offer extends AbstractAPI
      * @param string $offerId The unique identifier of the offer that is to be
      *                        withdrawn. This value is passed into the path of the call URI.
      *
-     * @return WithdrawResponse
+     * @return WithdrawResponse|UnexpectedResponse
      */
-    public function withdraw(string $offerId): WithdrawResponse
+    public function withdraw(string $offerId)
     {
         return $this->request(
         'withdrawOffer',
@@ -471,9 +472,9 @@ class Offer extends AbstractAPI
      * @param WithdrawByInventoryItemGroupRequest $Model the base request of the
      *                                                   <strong>withdrawOfferByInventoryItemGroup</strong> call
      *
-     * @return mixed
+     * @return UnexpectedResponse
      */
-    public function withdrawByInventoryItemGroup(WithdrawByInventoryItemGroupRequest $Model): mixed
+    public function withdrawByInventoryItemGroup(WithdrawByInventoryItemGroupRequest $Model): UnexpectedResponse
     {
         return $this->request(
         'withdrawOfferByInventoryItemGroup',

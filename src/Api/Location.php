@@ -6,6 +6,7 @@ use Ebay\Sell\Inventory\Model\InventoryLocation;
 use Ebay\Sell\Inventory\Model\InventoryLocationFull;
 use Ebay\Sell\Inventory\Model\InventoryLocationResponse;
 use Ebay\Sell\Inventory\Model\LocationResponse;
+use OpenAPI\Runtime\UnexpectedResponse;
 
 class Location extends AbstractAPI
 {
@@ -20,9 +21,9 @@ class Location extends AbstractAPI
      *                                    inventory location. This value is passed in at the end of the call URI to
      *                                    specify the inventory location to retrieve. <br><br><b>Max length</b>: 36
      *
-     * @return InventoryLocationResponse
+     * @return InventoryLocationResponse|UnexpectedResponse
      */
-    public function getInventory(string $merchantLocationKey): InventoryLocationResponse
+    public function getInventory(string $merchantLocationKey)
     {
         return $this->request(
         'getInventoryLocation',
@@ -78,9 +79,9 @@ class Location extends AbstractAPI
      *                                                   API calls to identify an inventory location. <br><br><b>Max length</b>: 36
      * @param InventoryLocationFull $Model               Inventory Location details
      *
-     * @return mixed
+     * @return UnexpectedResponse
      */
-    public function createInventory(string $merchantLocationKey, InventoryLocationFull $Model): mixed
+    public function createInventory(string $merchantLocationKey, InventoryLocationFull $Model): UnexpectedResponse
     {
         return $this->request(
         'createInventoryLocation',
@@ -106,9 +107,9 @@ class Location extends AbstractAPI
      *                                    inventory location. This value is passed in at the end of the call URI to
      *                                    indicate the inventory location to be deleted. <br><br><b>Max length</b>: 36
      *
-     * @return mixed
+     * @return UnexpectedResponse
      */
-    public function deleteInventory(string $merchantLocationKey): mixed
+    public function deleteInventory(string $merchantLocationKey): UnexpectedResponse
     {
         return $this->request(
         'deleteInventoryLocation',
@@ -134,9 +135,9 @@ class Location extends AbstractAPI
      *                                    inventory location. This value is passed in through the call URI to disable the
      *                                    specified inventory location. <br><br><b>Max length</b>: 36
      *
-     * @return object
+     * @return object|UnexpectedResponse
      */
-    public function disableInventory(string $merchantLocationKey): object
+    public function disableInventory(string $merchantLocationKey)
     {
         return $this->request(
         'disableInventoryLocation',
@@ -160,9 +161,9 @@ class Location extends AbstractAPI
      *                                    inventory location. This value is passed in through the call URI to specify the
      *                                    disabled inventory location to enable. <br><br><b>Max length</b>: 36
      *
-     * @return object
+     * @return object|UnexpectedResponse
      */
-    public function enableInventory(string $merchantLocationKey): object
+    public function enableInventory(string $merchantLocationKey)
     {
         return $this->request(
         'enableInventoryLocation',
@@ -202,9 +203,9 @@ class Location extends AbstractAPI
      *                       <code>20</code>, the first page of the response contains items 11-30 from the
      *                       complete result set.</p> <p><b>Default:</b> 0</p>
      *
-     * @return LocationResponse
+     * @return LocationResponse|UnexpectedResponse
      */
-    public function getInventorys(array $queries = []): LocationResponse
+    public function getInventorys(array $queries = [])
     {
         return $this->request(
         'getInventoryLocations',
@@ -252,9 +253,9 @@ class Location extends AbstractAPI
      * @param InventoryLocation $Model               the inventory location details to be updated
      *                                               (other than the address and geo co-ordinates)
      *
-     * @return mixed
+     * @return UnexpectedResponse
      */
-    public function updateInventory(string $merchantLocationKey, InventoryLocation $Model): mixed
+    public function updateInventory(string $merchantLocationKey, InventoryLocation $Model): UnexpectedResponse
     {
         return $this->request(
         'updateInventoryLocation',

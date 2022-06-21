@@ -4,6 +4,7 @@ namespace Ebay\Sell\Inventory\Api;
 
 use Ebay\Sell\Inventory\Model\BulkMigrateListing;
 use Ebay\Sell\Inventory\Model\BulkMigrateListingResponse;
+use OpenAPI\Runtime\UnexpectedResponse;
 
 class Listing extends AbstractAPI
 {
@@ -72,9 +73,9 @@ class Listing extends AbstractAPI
      * @param BulkMigrateListing $Model Details of the listings that needs to be
      *                                  migrated into Inventory
      *
-     * @return BulkMigrateListingResponse
+     * @return BulkMigrateListingResponse|UnexpectedResponse
      */
-    public function bulkMigrate(BulkMigrateListing $Model): BulkMigrateListingResponse
+    public function bulkMigrate(BulkMigrateListing $Model)
     {
         return $this->request(
         'bulkMigrateListing',

@@ -4,6 +4,7 @@ namespace Ebay\Sell\Inventory\Api;
 
 use Ebay\Sell\Inventory\Model\BaseResponse;
 use Ebay\Sell\Inventory\Model\Compatibility as CompatibilityModel;
+use OpenAPI\Runtime\UnexpectedResponse;
 
 class Compatibility extends AbstractAPI
 {
@@ -18,9 +19,9 @@ class Compatibility extends AbstractAPI
      * @param string $sku A SKU (stock keeping unit) is an unique identifier defined by
      *                    a seller for a product
      *
-     * @return CompatibilityModel
+     * @return CompatibilityModel|UnexpectedResponse
      */
-    public function get(string $sku): CompatibilityModel
+    public function get(string $sku)
     {
         return $this->request(
         'getProductCompatibility',
@@ -55,9 +56,9 @@ class Compatibility extends AbstractAPI
      *                                    'Content-Language'	string	This request header sets the natural language that
      *                                    will be provided in the field values of the request payload
      *
-     * @return BaseResponse
+     * @return BaseResponse|UnexpectedResponse
      */
-    public function createOrReplace(string $sku, CompatibilityModel $Model, array $headers = []): BaseResponse
+    public function createOrReplace(string $sku, CompatibilityModel $Model, array $headers = [])
     {
         return $this->request(
         'createOrReplaceProductCompatibility',
@@ -79,9 +80,9 @@ class Compatibility extends AbstractAPI
      * @param string $sku A SKU (stock keeping unit) is an unique identifier defined by
      *                    a seller for a product
      *
-     * @return mixed
+     * @return UnexpectedResponse
      */
-    public function delete(string $sku): mixed
+    public function delete(string $sku): UnexpectedResponse
     {
         return $this->request(
         'deleteProductCompatibility',

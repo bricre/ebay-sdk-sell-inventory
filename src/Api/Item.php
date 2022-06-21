@@ -12,6 +12,7 @@ use Ebay\Sell\Inventory\Model\BulkPriceQuantityResponse;
 use Ebay\Sell\Inventory\Model\InventoryItem;
 use Ebay\Sell\Inventory\Model\InventoryItems;
 use Ebay\Sell\Inventory\Model\InventoryItemWithSkuLocaleGroupid;
+use OpenAPI\Runtime\UnexpectedResponse;
 
 class Item extends AbstractAPI
 {
@@ -69,9 +70,9 @@ class Item extends AbstractAPI
      *
      * @param BulkInventoryItem $Model Details of the inventories with sku and locale
      *
-     * @return BulkInventoryItemResponse
+     * @return BulkInventoryItemResponse|UnexpectedResponse
      */
-    public function bulkCreateOrReplace(BulkInventoryItem $Model): BulkInventoryItemResponse
+    public function bulkCreateOrReplace(BulkInventoryItem $Model)
     {
         return $this->request(
         'bulkCreateOrReplaceInventoryItem',
@@ -98,9 +99,9 @@ class Item extends AbstractAPI
      * @param BulkGetInventoryItem $Model Details of the inventories with sku and
      *                                    locale
      *
-     * @return BulkGetInventoryItemResponse
+     * @return BulkGetInventoryItemResponse|UnexpectedResponse
      */
-    public function bulkGet(BulkGetInventoryItem $Model): BulkGetInventoryItemResponse
+    public function bulkGet(BulkGetInventoryItem $Model)
     {
         return $this->request(
         'bulkGetInventoryItem',
@@ -146,9 +147,9 @@ class Item extends AbstractAPI
      * @param BulkPriceQuantity $Model Price and allocation details for the given SKU
      *                                 and Marketplace
      *
-     * @return BulkPriceQuantityResponse
+     * @return BulkPriceQuantityResponse|UnexpectedResponse
      */
-    public function bulkUpdatePriceQuantity(BulkPriceQuantity $Model): BulkPriceQuantityResponse
+    public function bulkUpdatePriceQuantity(BulkPriceQuantity $Model)
     {
         return $this->request(
         'bulkUpdatePriceQuantity',
@@ -176,9 +177,9 @@ class Item extends AbstractAPI
      *                    inventory item record you wish to retrieve.<br/><br/><strong>Max
      *                    length</strong>: 50.
      *
-     * @return InventoryItemWithSkuLocaleGroupid
+     * @return InventoryItemWithSkuLocaleGroupid|UnexpectedResponse
      */
-    public function get(string $sku): InventoryItemWithSkuLocaleGroupid
+    public function get(string $sku)
     {
         return $this->request(
         'getInventoryItem',
@@ -253,9 +254,9 @@ class Item extends AbstractAPI
      *                               'Content-Language'	string	This request header sets the natural language that
      *                               will be provided in the field values of the request payload
      *
-     * @return BaseResponse
+     * @return BaseResponse|UnexpectedResponse
      */
-    public function createOrReplace(string $sku, InventoryItem $Model, array $headers = []): BaseResponse
+    public function createOrReplace(string $sku, InventoryItem $Model, array $headers = [])
     {
         return $this->request(
         'createOrReplaceInventoryItem',
@@ -283,9 +284,9 @@ class Item extends AbstractAPI
      *                    inventory item record you wish to delete.<br/><br/><strong>Max length</strong>:
      *                    50.
      *
-     * @return mixed
+     * @return UnexpectedResponse
      */
-    public function delete(string $sku): mixed
+    public function delete(string $sku): UnexpectedResponse
     {
         return $this->request(
         'deleteInventoryItem',
@@ -323,9 +324,9 @@ class Item extends AbstractAPI
      *                       parameter is not set, its value defaults to <code>0</code>, and the first page
      *                       of records is returned.
      *
-     * @return InventoryItems
+     * @return InventoryItems|UnexpectedResponse
      */
-    public function gets(array $queries = []): InventoryItems
+    public function gets(array $queries = [])
     {
         return $this->request(
         'getInventoryItems',

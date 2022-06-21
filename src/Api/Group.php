@@ -4,6 +4,7 @@ namespace Ebay\Sell\Inventory\Api;
 
 use Ebay\Sell\Inventory\Model\BaseResponse;
 use Ebay\Sell\Inventory\Model\InventoryItemGroup;
+use OpenAPI\Runtime\UnexpectedResponse;
 
 class Group extends AbstractAPI
 {
@@ -18,9 +19,9 @@ class Group extends AbstractAPI
      *                                      created. The <strong>inventoryItemGroupKey</strong> value for the inventory item
      *                                      group to retrieve is passed in at the end of the call URI.
      *
-     * @return InventoryItemGroup
+     * @return InventoryItemGroup|UnexpectedResponse
      */
-    public function get(string $inventoryItemGroupKey): InventoryItemGroup
+    public function get(string $inventoryItemGroupKey)
     {
         return $this->request(
         'getInventoryItemGroup',
@@ -88,9 +89,9 @@ class Group extends AbstractAPI
      *                                                  'Content-Language'	string	This request header sets the natural language that
      *                                                  will be provided in the field values of the request payload
      *
-     * @return BaseResponse
+     * @return BaseResponse|UnexpectedResponse
      */
-    public function createOrReplace(string $inventoryItemGroupKey, InventoryItemGroup $Model, array $headers = []): BaseResponse
+    public function createOrReplace(string $inventoryItemGroupKey, InventoryItemGroup $Model, array $headers = [])
     {
         return $this->request(
         'createOrReplaceInventoryItemGroup',
@@ -111,9 +112,9 @@ class Group extends AbstractAPI
      *                                      created. The <strong>inventoryItemGroupKey</strong> value for the inventory item
      *                                      group to delete is passed in at the end of the call URI.
      *
-     * @return mixed
+     * @return UnexpectedResponse
      */
-    public function delete(string $inventoryItemGroupKey): mixed
+    public function delete(string $inventoryItemGroupKey): UnexpectedResponse
     {
         return $this->request(
         'deleteInventoryItemGroup',
